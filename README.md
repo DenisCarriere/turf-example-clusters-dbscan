@@ -1,3 +1,3 @@
-# Turf Example of Clusters DBSCAN
+# Turf Demo: Clusters DBSCAN
 
-[Preview Demo](#foo)
+[Preview Demo](https://deniscarriere.github.io/turf-example-clusters-dbscan/)
