@@ -20,7 +20,7 @@ const layer = L.layerGroup([])
 layer.addTo(map)
 
 // Map Click -- reduce distance by 100 meters
-let DISTANCE = 1000
+let DISTANCE = 600
 let descending = true
 let COUNT = 0
 let FEATURES = 0
@@ -34,9 +34,11 @@ function onMapClick (e) {
   if (points.features.length > 3) {
     layer.clearLayers()
     const clustered = clustersDbscan(points, DISTANCE, 'meters')
-    L.geoJSON(styleResult(clustered), {style, pointToLayer}).addTo(layer);
+    if (clustered) {
+      L.geoJSON(styleResult(clustered), {style, pointToLayer}).addTo(layer);
+      document.getElementById("counters").innerHTML = `Points: ${clustered.features.length}, Clusters: ${COUNT}, Distance: ${DISTANCE}m`;
+    }
   }
-  document.getElementById("counters").innerHTML = `Points: ${clustered.features.length}, Clusters: ${count}, Distance: ${DISTANCE}m`;
 }
 
 // Map Move -- create a point
@@ -84,13 +86,16 @@ function styleResult(clustered) {
 
         // Add concave polygon
         const coords = coordAll(cluster)
-        if (coords.length > 4) {
-          features.push(polygon([concaveman(coords)], {
-              color: darkColor,
-              stroke: true,
-              fillOpacity: 0.3,
-              fillColor: darkColor
-          }));
+        if (coords.length >= 3) {
+          const concave = concaveman(coords)
+          if (concave.length > 3) {
+            features.push(polygon([concave], {
+                color: darkColor,
+                stroke: true,
+                fillOpacity: 0.3,
+                fillColor: darkColor
+            }));
+          }
           features.push(centroid(cluster, {
             color,
             fillColor: color,
