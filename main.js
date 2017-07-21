@@ -6,9 +6,10 @@ const {clusterEach, clusterReduce} = clusters
 
 const map = L.map('app').setView([45.414444, -75.697100], 12)
 
-L.tileLayer('https://api.mapbox.com/styles/v1/addxy/cj5ehx3n41eao2so6wjnaw49c/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ', {
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
   maxZoom: 18,
   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+  id: 'mapbox.streets'
 }).addTo(map)
 
 map.doubleClickZoom.disable()
