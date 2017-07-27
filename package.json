@@ -1,5 +1,30 @@
 {
+  "private": true,
+  "name": "turf-example-clusters-dbscan",
+  "description": "Demo Clusters DBSCAN",
+  "version": "0.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "st -nc -i index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenisCarriere/turf-example-clusters-dbscan.git"
+  },
+  "author": "Denis Carriere <@DenisCarriere>",
+  "license": "MIT",
   "dependencies": {
-    "@types/leaflet": "^1.0.66"
+    "@turf/centroid": "^4.5.2",
+    "@turf/clusters": "^4.6.0",
+    "@turf/clusters-dbscan": "^4.0.0-beta",
+    "@turf/helpers": "^4.5.2",
+    "@turf/meta": "^4.5.2",
+    "@types/leaflet": "^1.0.66",
+    "chromatism": "^2.6.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2",
+    "st": "^1.2.0",
+    "standard": "^10.0.2"
   }
 }
