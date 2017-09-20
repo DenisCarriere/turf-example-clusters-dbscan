@@ -1,8 +1,10 @@
 const {
   featureEach, coordAll, // @turf/meta
   point, polygon, featureCollection, // @turf/helpers
-  centroid} = turf
-const {clusterEach, clusterReduce} = clusters
+  centroid, // @turf/centroid
+  clusterEach, clusterReduce, // @turf/clusters
+  clustersDbscan // @turf/clusters-dbscan
+} = turf
 
 const map = L.map('app').setView([45.414444, -75.697100], 12)
 
@@ -14,7 +16,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/addxy/cj5ei3dxl1ebq2rpnm4iv8mxz/ti
 map.doubleClickZoom.disable()
 
 // Layers
-const points = turf.featureCollection([])
+const points = featureCollection([])
 const layer = L.layerGroup([])
 layer.addTo(map)
 
@@ -35,7 +37,7 @@ function onMapClick (e) {
     const clustered = clustersDbscan(points, DISTANCE, 'meters')
     if (clustered) {
       L.geoJSON(styleResult(clustered), {style, pointToLayer}).addTo(layer);
-      document.getElementById("counters").innerHTML = `Points: ${clustered.features.length}, Clusters: ${COUNT}, Distance: ${DISTANCE}m`;
+      document.getElementById('counters').innerHTML = `Points: ${clustered.features.length}, Clusters: ${COUNT}, Distance: ${DISTANCE}m`;
     }
   }
 }
